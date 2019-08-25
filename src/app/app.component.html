@@ -1,0 +1,34 @@
+<div class="continer">
+  <div class="row justify-content-center" style="margin: 30px; width: 90%;">
+    <div class="col-md-4">
+      <h3>Test Form With Serachable Menu </h3>
+      <form [formGroup]="testForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Name</label>
+          <input formControlName="name" type="text" class="form-control" placeholder="Enter name">
+          <div *ngIf="isSubmitted && controls.name.errors">
+            <div *ngIf="controls.name.errors.required" style="color: red;">Name is required</div>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label>Country</label>
+          <!--HOW TO USE IT-->
+          <searchable-menu [list]="countries" (selectedItem)='getSelectedCountry($event)'></searchable-menu>
+          <div *ngIf="isSubmitted && controls.country.errors">
+            <div *ngIf="controls.country.errors.required" style="color: red;">Country is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary">submit</button>
+        </div>
+      </form>
+      Form value {{testForm.value | json}}
+    </div>
+
+  </div>
+</div>
+
+<router-outlet></router-outlet>

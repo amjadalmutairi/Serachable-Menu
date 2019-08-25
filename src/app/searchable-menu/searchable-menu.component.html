@@ -1,0 +1,19 @@
+<div class="menu">
+
+  <div class="menu-label" (click)="hideMenu = !hideMenu">
+    <label> {{selectedValue}} </label>
+    <p>&#x25BC;</p>
+  </div>
+
+  <div class="wrapper">
+    <div *ngIf="!hideMenu" class="menu-dropdown">
+      <input placeholder="search" class="form-control" [(ngModel)]="userInput">
+      <hr>
+      <div class="options-div">
+        <option *ngFor="let option of list | filterList : userInput " value="{{option.key}}" (click)="setSelectedItem(option.key); hideMenu= true; "
+          [style.background-color]=" option.value === selectedValue ? '#ced4da' : '' ">{{ option.value }}</option>
+      </div>
+    </div>
+  </div>
+
+</div>
